@@ -15,6 +15,24 @@ body {
     color: #fff;
     overflow-x: hidden;
     line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Loading animation */
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Hero Section */
@@ -38,11 +56,24 @@ body {
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 300;
     color: #fff;
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(50px);
     animation: fadeInUp 2s ease-out 0.5s forwards;
     letter-spacing: 2px;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.hero-text::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: expandLine 1.5s ease-out 2s forwards;
 }
 
 /* Glowing Sphere */
@@ -56,23 +87,27 @@ body {
     border-radius: 50%;
     background: radial-gradient(
         circle at 30% 30%,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(255, 255, 255, 0.15) 20%,
-        rgba(255, 255, 255, 0.08) 40%,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.18) 15%,
+        rgba(255, 255, 255, 0.12) 30%,
+        rgba(255, 255, 255, 0.08) 45%,
         rgba(255, 255, 255, 0.04) 60%,
-        rgba(255, 255, 255, 0.02) 80%,
+        rgba(255, 255, 255, 0.02) 75%,
         transparent 100%
     );
     box-shadow: 
-        0 0 100px rgba(255, 255, 255, 0.3),
-        0 0 200px rgba(255, 255, 255, 0.15),
-        0 0 300px rgba(255, 255, 255, 0.08),
-        inset -20px -20px 60px rgba(255, 255, 255, 0.1),
-        inset 20px 20px 60px rgba(0, 0, 0, 0.3);
+        0 0 120px rgba(255, 255, 255, 0.4),
+        0 0 240px rgba(255, 255, 255, 0.2),
+        0 0 360px rgba(255, 255, 255, 0.1),
+        0 0 480px rgba(255, 255, 255, 0.05),
+        inset -30px -30px 80px rgba(255, 255, 255, 0.15),
+        inset 30px 30px 80px rgba(0, 0, 0, 0.4);
     opacity: 0;
     animation: sphereGlow 3s ease-out 1s forwards, pulse 4s ease-in-out 4s infinite;
     z-index: 1;
     transition: transform 0.3s ease-out;
+    will-change: transform;
+    filter: blur(0.5px);
 }
 
 /* Works Section */
@@ -116,17 +151,18 @@ body {
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 30px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     position: relative;
     overflow: hidden;
+    will-change: transform, opacity, box-shadow;
 }
 
 .project-card::before {
@@ -136,10 +172,26 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
     pointer-events: none;
+    border-radius: 20px;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent, rgba(255, 255, 255, 0.1));
+    border-radius: 22px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .project-card.visible {
@@ -148,14 +200,26 @@ body {
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 
+        0 25px 50px rgba(255, 255, 255, 0.15),
+        0 0 80px rgba(255, 255, 255, 0.1),
+        0 0 120px rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .project-card:hover::before {
     opacity: 1;
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
 }
 
 .project-card h3 {
@@ -172,36 +236,107 @@ body {
     line-height: 1.6;
     color: #ccc;
     font-weight: 300;
+    margin-bottom: 20px;
     position: relative;
     z-index: 1;
 }
 
+.card-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.tech-tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.tech-tag:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
 /* Animations */
 @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+@keyframes expandLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 200px;
+    }
+}
+
 @keyframes sphereGlow {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
     to {
         opacity: 1;
+        transform: translateX(-50%) scale(1);
     }
 }
 
 @keyframes pulse {
     0%, 100% {
         box-shadow: 
-            0 -50px 100px rgba(255, 255, 255, 0.1),
-            0 -100px 200px rgba(255, 255, 255, 0.05),
-            inset 0 50px 100px rgba(255, 255, 255, 0.02);
+            0 0 120px rgba(255, 255, 255, 0.4),
+            0 0 240px rgba(255, 255, 255, 0.2),
+            0 0 360px rgba(255, 255, 255, 0.1),
+            0 0 480px rgba(255, 255, 255, 0.05),
+            inset -30px -30px 80px rgba(255, 255, 255, 0.15),
+            inset 30px 30px 80px rgba(0, 0, 0, 0.4);
     }
     50% {
         box-shadow: 
-            0 -50px 120px rgba(255, 255, 255, 0.15),
-            0 -100px 240px rgba(255, 255, 255, 0.08),
-            inset 0 50px 120px rgba(255, 255, 255, 0.03);
+            0 0 140px rgba(255, 255, 255, 0.5),
+            0 0 280px rgba(255, 255, 255, 0.25),
+            0 0 420px rgba(255, 255, 255, 0.15),
+            0 0 560px rgba(255, 255, 255, 0.08),
+            inset -35px -35px 90px rgba(255, 255, 255, 0.2),
+            inset 35px 35px 90px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes cardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        filter: brightness(1) contrast(1);
+    }
+    50% {
+        filter: brightness(1.1) contrast(1.05);
     }
 }
 
@@ -252,8 +387,8 @@ body {
 @supports (backdrop-filter: blur(10px)) {
     .project-card {
         background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
 }
 
@@ -273,4 +408,61 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
+}
+
+/* Focus states for accessibility */
+.project-card:focus-within {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Keyboard navigation styles */
+.keyboard-navigation .project-card:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 4px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .glowing-sphere {
+        animation: none;
+    }
+    
+    .hero-text {
+        animation: none;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .project-card {
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .hero-text {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Print styles */
+@media print {
+    .glowing-sphere {
+        display: none;
+    }
+    
+    .project-card {
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
 }
