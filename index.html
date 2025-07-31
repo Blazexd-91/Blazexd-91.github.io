@@ -1,52 +1,150 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Blaze's Portfolio</title>  
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">  
-    <link rel="stylesheet" href="style.css">  
-</head>  
-<body>  
-    <!-- Landing Section -->  
-    <section class="hero-section">  
-        <div class="hero-content">  
-            <h1 class="hero-text">Welcome to Blaze's Portfolio</h1>  
-        </div>  
-        <div class="glowing-sphere"></div>  
-    </section>  <!-- My Works Section -->  
-<section class="works-section">  
-    <div class="works-container">  
-        <h2 class="works-title">My Works</h2>  
-        <div class="projects-grid">  
-            <div class="project-card">  
-                <h3>Project Alpha</h3>  
-                <p>A revolutionary web application that transforms user experiences through innovative design patterns and cutting-edge technology integration.</p>  
-            </div>  
-            <div class="project-card">  
-                <h3>Digital Nexus</h3>  
-                <p>Interactive platform connecting creativity with cutting-edge technology, enabling seamless collaboration between designers and developers.</p>  
-            </div>  
-            <div class="project-card">  
-                <h3>Void Interface</h3>  
-                <p>Minimalist design system that embraces the beauty of negative space while maintaining exceptional usability and accessibility standards.</p>  
-            </div>  
-            <div class="project-card">  
-                <h3>Quantum Dashboard</h3>  
-                <p>Data visualization tool with immersive 3D interactions that transforms complex datasets into intuitive, actionable insights.</p>  
-            </div>  
-            <div class="project-card">  
-                <h3>Shadow Engine</h3>  
-                <p>Performance-optimized framework for modern web applications, delivering lightning-fast load times and smooth user interactions.</p>  
-            </div>  
-            <div class="project-card">  
-                <h3>Ethereal CMS</h3>  
-                <p>Content management system designed for creative professionals, featuring an intuitive interface and powerful customization capabilities.</p>  
-            </div>  
-        </div>  
-    </div>  
-</section>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaze's Portfolio - Creative Developer & Designer</title>
+    <meta name="description" content="Blaze's immersive portfolio showcasing innovative web projects with advanced visual effects and cutting-edge technology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
 
-<script src="script.js"></script>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">Blaze</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#works" class="nav-link">Works</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-</body>  
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-text">Welcome to Blaze's Portfolio</h1>
+            <p class="hero-subtitle">Crafting digital experiences with innovation and precision</p>
+            <div class="hero-cta">
+                <a href="#works" class="cta-button">Explore My Work</a>
+            </div>
+        </div>
+        <div class="glowing-sphere"></div>
+        <div class="particles-container"></div>
+    </section>
+
+    <!-- My Works Section -->
+    <section id="works" class="works-section">
+        <div class="works-container">
+            <h2 class="works-title">My Works</h2>
+            <p class="works-subtitle">A collection of innovative projects that push the boundaries of web technology</p>
+            <div class="projects-grid">
+                <div class="project-card" data-category="web">
+                    <div class="card-header">
+                        <h3>Project Alpha</h3>
+                        <span class="project-category">Web Application</span>
+                    </div>
+                    <p>A revolutionary web application that transforms user experiences through innovative design patterns and cutting-edge technology integration.</p>
+                    <div class="card-footer">
+                        <span class="tech-stack">React • Node.js • MongoDB</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="platform">
+                    <div class="card-header">
+                        <h3>Digital Nexus</h3>
+                        <span class="project-category">Platform</span>
+                    </div>
+                    <p>Interactive platform connecting creativity with cutting-edge technology, enabling seamless collaboration between designers and developers.</p>
+                    <div class="card-footer">
+                        <span class="tech-stack">Vue.js • Python • PostgreSQL</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="card-header">
+                        <h3>Void Interface</h3>
+                        <span class="project-category">Design System</span>
+                    </div>
+                    <p>Minimalist design system that embraces the beauty of negative space while maintaining exceptional usability and accessibility standards.</p>
+                    <div class="card-footer">
+                        <span class="tech-stack">Figma • CSS • JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="data">
+                    <div class="card-header">
+                        <h3>Quantum Dashboard</h3>
+                        <span class="project-category">Data Visualization</span>
+                    </div>
+                    <p>Data visualization tool with immersive 3D interactions that transforms complex datasets into intuitive, actionable insights.</p>
+                    <div class="card-footer">
+                        <span class="tech-stack">Three.js • D3.js • TypeScript</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="framework">
+                    <div class="card-header">
+                        <h3>Shadow Engine</h3>
+                        <span class="project-category">Framework</span>
+                    </div>
+                    <p>Performance-optimized framework for modern web applications, delivering lightning-fast load times and smooth user interactions.</p>
+                    <div class="card-footer">
+                        <span class="tech-stack">WebAssembly • Rust • WebGL</span>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="cms">
+                    <div class="card-header">
+                        <h3>Ethereal CMS</h3>
+                        <span class="project-category">Content Management</span>
+                    </div>
+                    <p>Content management system designed for creative professionals, featuring an intuitive interface and powerful customization capabilities.</p>
+                    <div class="card-footer">
+                        <span class="tech-stack">Next.js • GraphQL • AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="contact-title">Let's Create Something Amazing</h2>
+            <p class="contact-subtitle">Ready to bring your vision to life? Let's collaborate on your next project.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-label">Email:</span>
+                    <a href="mailto:blaze@example.com" class="contact-link">blaze@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">LinkedIn:</span>
+                    <a href="#" class="contact-link">linkedin.com/in/blaze</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">GitHub:</span>
+                    <a href="#" class="contact-link">github.com/blaze</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Blaze. Crafted with passion and precision.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
